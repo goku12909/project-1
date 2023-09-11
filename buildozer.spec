@@ -1,87 +1,70 @@
 [app]
+# Nombre de la aplicación (sin espacios y caracteres especiales)
+title = FazuInfo
 
-# (str) Title of your application
-title = My Application
+# Paquete (nombre del paquete en minúsculas)
+package.name = mykivyapp
 
-# (str) Package name
-package.name = myapp
+# Versión del APK (debes cambiar esto en cada versión)
+package.version = 1.0
 
-# (str) Package domain (needed for android/ios packaging)
-package.domain = org.test
+# Icono de la aplicación (debes proporcionar un archivo .png)
+package.icon.filename = icon.png
 
-# (str) Source code where the main.py live
+# Requerimientos adicionales
+requirements = sqlite3,kivy,spacy,requests,python3
+
+# Permisos requeridos (para acceso a archivos, internet, etc.)
+android.permissions = INTERNET,WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE
+
+# Código principal de la aplicación (el nombre del archivo principal)
 source.dir = .
 
-# (list) Source files to include (let empty to include all the files)
-source.include_exts = py,png,jpg,kv,atlas, ttf
+# Directorio de datos de la aplicación (donde se encuentra conocimiento.db)
+source.include_exts = py,png,jpg,kv,atlas,db
+source.exclude_exts = spec
 
-# (list) List of inclusions using pattern matching
-#source.include_patterns = assets/*,images/*.png
+# Archivos adicionales para incluir
+source.extra_files = icon.png, conocimiento.db
 
-# (list) Source files to exclude (let empty to not exclude anything)
-#source.exclude_exts = spec
+# Archivo de inicio de la aplicación
+main.py
 
-# (list) List of directory to exclude (let empty to not exclude anything)
-#source.exclude_dirs = tests, bin, venv
-
-# (list) List of exclusions using pattern matching
-# Do not prefix with './'
-#source.exclude_patterns = license,images/*/*.jpg
-
-# (str) Application versioning (method 1)
-version = 0.1
-
-# (str) Application versioning (method 2)
-# version.regex = __version__ = ['"](.*)['"]
-# version.filename = %(source.dir)s/main.py
-
-# (list) Application requirements
-# comma separated e.g. requirements = sqlite3,kivy
-requirements =  python3==3.7.6,hostpython3==3.7.6, kivy, pillow
-
-# (str) Custom source folders for requirements
-# Sets custom source for any requirements with recipes
-# requirements.source.kivy = ../../kivy
-
-# (str) Presplash of the application
-#presplash.filename = %(source.dir)s/data/presplash.png
-
-# (str) Icon of the application
-#icon.filename = %(source.dir)s/data/icon.png
-
-# (list) Supported orientations
-# Valid options are: landscape, portrait, portrait-reverse or landscape-reverse
-orientation = portrait
-
-# (list) List of service to declare
-#services = NAME:ENTRYPOINT_TO_PY,NAME2:ENTRYPOINT2_TO_PY
-
-#
-# OSX Specific
-#
-
-#
-# author = © Copyright Info
-
-# change the major version of python used by the app
-osx.python_version = 3.7.6
-
-# Kivy version to use
-osx.kivy_version = 1.9.1
-
-#
-# Android specific
-#
-
-# (bool) Indicate if the application should be fullscreen or not
+# Configuración de inicio de la aplicación
 fullscreen = 0
+show_cursor = 0
 
-# (string) Presplash background color (for android toolchain)
-# Supported formats are: #RRGGBB #AARRGGBB or one of the following names:
-# red, blue, green, black, white, gray, cyan, magenta, yellow, lightgray,
-# darkgray, grey, lightgrey, darkgrey, aqua, fuchsia, lime, maroon, navy,
-# olive, purple, silver, teal.
-#android.presplash_color = #FFFFFF
+# Inicialización de Kivy (ajustar según sea necesario)
+osx.python_version = 3
+osx.kivy_version = 2
+
+[buildozer]
+# Entorno de compilación (android, ios, etc.)
+target = android
+
+# Directorio de compilación
+build_dir = build
+
+# Configuración de compilación para Android
+android.ndk_path = /usr/local/share/buildozer/crystax-ndk
+android.sdk_path = /opt/android/android-sdk
+android.sdk = 28
+
+# Versión de Python a utilizar
+# (asegúrate de que coincida con las versiones de requisitos en 'requirements')
+android.python_version = 3.8.6
+
+# Versión de Kivy a utilizar
+android.kivy_version = 2.0.0
+
+# Configuración adicional de Android (ajustar según sea necesario)
+android.permissions = INTERNET,WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE
+android.arch = armeabi-v7a
+android.icon = icon.png
+android.presplash.filename = splash.png
+android.presplash.color = #FFFFFF
+android.presplash.scale = fill
+
 
 # (string) Presplash animation using Lottie format.
 # see https://lottiefiles.com/ for examples and https://airbnb.design/lottie/
